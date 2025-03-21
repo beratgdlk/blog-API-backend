@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "description": "",
+  "description": "be-7734p",
   "dependencies": {
     "@types/express": "^5.0.1",
     "dotenv": "^16.4.7",
