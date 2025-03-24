@@ -22,22 +22,6 @@ A RESTful backend API for managing blog categories, posts, and comments, built w
 - Structured endpoints
 - Clear and organized folder structure
 
-## 📂 Project Structure
-
-```
-blog-api/
-├── src/
-│   ├── controllers/
-│   ├── routes/
-│   ├── models/
-│   │── migrations/
-│   └── app.ts
-├── .gitignore
-├── knexfile.ts
-├── package.json
-├── tsconfig.json
-└── README.md
-```
 
 ## 🚀 API Endpoints
 
