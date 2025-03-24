@@ -5,9 +5,9 @@ export const listPosts = async (req: Request, res: Response) => {
     try {
         const posts = await getAllPosts();
         res.json(posts)
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: "It was an error." });
+    } catch (error: any) {
+        console.error('listPosts error:', error);
+        res.status(500).json({ message: "Sunucu hatası", error: error.message });
     }
 }
 
@@ -18,11 +18,11 @@ export const getPost = async (req: Request, res: Response) => {
         if (post) {
             res.json(post);
         } else {
-            res.status(404).json({ message: "not_found" });
+            res.status(404).json({ message: "Post bulunamadı" });
         }
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: "It was an error." });
+    } catch (error: any) {
+        console.error('getPost error:', error);
+        res.status(500).json({ message: "Sunucu hatası", error: error.message });
     }
 }
 
@@ -30,9 +30,9 @@ export const addPost = async (req: Request, res: Response) => {
     try {
         const newPost = await createPost(req.body);
         res.status(201).json(newPost);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: "It was an error." });
+    } catch (error: any) {
+        console.error('addPost error:', error);
+        res.status(500).json({ message: "Sunucu hatası", error: error.message });
     }    
 }
 
@@ -41,9 +41,9 @@ export const editPost = async (req: Request, res: Response) => {
         const { id } = req.params;
         const updatedPost = await updatePost(Number(id), req.body);
         res.status(200).json(updatedPost);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: "It was an error." });
+    } catch (error: any) {
+        console.error('editPost error:', error);
+        res.status(500).json({ message: "Sunucu hatası", error: error.message });
     }
 }
 
@@ -52,8 +52,8 @@ export const removePost = async (req: Request, res: Response) => {
         const { id } = req.params;
         const deletedPost = await deletePost(Number(id));
         res.status(200).json(deletedPost);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: "It was an error." });
+    } catch (error: any) {
+        console.error('removePost error:', error);
+        res.status(500).json({ message: "Sunucu hatası", error: error.message });
     }
 }
