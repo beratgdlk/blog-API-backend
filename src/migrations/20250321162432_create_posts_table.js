@@ -4,9 +4,9 @@ export async function up(knex) {
         table.integer('category_id').references('id').inTable('categories').onDelete("CASCADE");
         table.string('title').notNullable();
         table.string('content').notNullable();
-        table.timeStamp('created_at').defaultTo(knex.fn.now());
-        table.timeStamp('published_at').nullable();
-        table.timeStamp('deleted_at').nullable();
+        table.timestamp('created_at').defaultTo(knex.fn.now());
+        table.timestamp('published_at').nullable();
+        table.timestamp('deleted_at').nullable();
     })
 } /* UP  migrate edildiğinde çalışacak kod */
 
