@@ -2,12 +2,11 @@ import { db } from '../config/database.js'
 
 export const getAllCategories = () => {
     const query = db('categories')
-    return query;
-
+    return query.where('deleted_at',null);
 }
 
 export const getCategoryById = (id:number)=>{
-    return db('categories').where({ id }).first();
+    return db('categories').where({ id , deleted_at: null }).first();
 }
 
 export const createCategory = (data:object)=>{
