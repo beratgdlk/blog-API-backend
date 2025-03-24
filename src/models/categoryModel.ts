@@ -1,8 +1,15 @@
 import { db } from '../config/database.js'
 
-export const getAllCategories = () => {
+export const getAllCategories = (showDeleted:string) => {
     const query = db('categories')
-    return query.where('deleted_at',null);
+    if (showDeleted === "true") {
+
+    } else if (showDeleted === "onlyDeleted") {
+        query.whereNot ('deleted_at',null)
+    } else {
+        query.where ('deleted_at',null)
+    }
+    return query
 }
 
 export const getCategoryById = (id:number)=>{

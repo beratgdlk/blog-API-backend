@@ -1,8 +1,17 @@
 import { db } from '../config/database.js'
 
-export const getAllComments = () => {
-    const query = db('comments')
-    return query.where('deleted_at',null);
+export const getAllComments = (postId?: string, commenterName?: string) => {
+    const query = db('comments').where('deleted_at', null);
+    
+    if (postId) {
+        query.where('post_id', Number(postId));
+    }
+    
+    if (commenterName) {
+        query.where('commenter_name', 'ilike', `%${commenterName}%`);
+    }
+    
+    return query;
 }
 
 export const getCommentById = (id:number)=>{

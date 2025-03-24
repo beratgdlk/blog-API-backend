@@ -1,8 +1,19 @@
 import { db } from '../config/database.js'
 
-export const getAllPosts = () => {
-    const query = db('posts')
-    return query.where('deleted_at',null);
+export const getAllPosts = (categoryId?: string, published?: string) => {
+    const query = db('posts').where('deleted_at', null);
+    
+    if (categoryId) {
+        query.where('category_id', Number(categoryId));
+    }
+    
+    if (published === 'true') {
+        query.whereNotNull('published_at');
+    } else if (published === 'false') {
+        query.whereNull('published_at');
+    }
+    
+    return query;
 }
 
 export const getPostById = (id:number)=>{
