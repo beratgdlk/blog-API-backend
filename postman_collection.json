@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "7f9e0a3d-d1ea-4c45-8bb2-8d56d8ee4e2e",
+		"name": "Blog API",
+		"description": "Blog API with category, post, comment and tag endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "List Categories",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": ["{{base_url}}"],
+							"path": ["categories"]
+						}
+					}
+				},
+				{
+					"name": "Get Category Statistics",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/categories/stats",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Get Category by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": ["{{base_url}}"],
+							"path": ["categories"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Technology\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "1"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Technology\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": ["{{base_url}}"],
+							"path": ["categories", "1"]
+						}
+					}
+				},
+				{
+					"name": "List Categories (With Deleted)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/categories?showDeleted=true",
+							"host": ["{{base_url}}"],
+							"path": ["categories"],
+							"query": [
+								{
+									"key": "showDeleted",
+									"value": "true"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Only Deleted Categories",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/categories?showDeleted=onlyDeleted",
+							"host": ["{{base_url}}"],
+							"path": ["categories"],
+							"query": [
+								{
+									"key": "showDeleted",
+									"value": "onlyDeleted"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "List Posts",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": ["{{base_url}}"],
+							"path": ["posts"]
+						}
+					}
+				},
+				{
+					"name": "Get Post Statistics",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts/stats",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Get Post by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts/1",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": ["{{base_url}}"],
+							"path": ["posts"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"New Post\",\n  \"content\": \"This is a new post content\",\n  \"category_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/posts/1",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Post\",\n  \"content\": \"Updated content\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/posts/1",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1"]
+						}
+					}
+				},
+				{
+					"name": "Publish Post",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/posts/1/publish",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1", "publish"]
+						}
+					}
+				},
+				{
+					"name": "Unpublish Post",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/posts/1/unpublish",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1", "unpublish"]
+						}
+					}
+				},
+				{
+					"name": "Add Tag to Post",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/posts/1/tags/1",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1", "tags", "1"]
+						}
+					}
+				},
+				{
+					"name": "Remove Tag from Post",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/posts/1/tags/1",
+							"host": ["{{base_url}}"],
+							"path": ["posts", "1", "tags", "1"]
+						}
+					}
+				},
+				{
+					"name": "List Posts by Category",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts?categoryId=1",
+							"host": ["{{base_url}}"],
+							"path": ["posts"],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Published Posts",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts?published=true",
+							"host": ["{{base_url}}"],
+							"path": ["posts"],
+							"query": [
+								{
+									"key": "published",
+									"value": "true"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Unpublished Posts",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts?published=false",
+							"host": ["{{base_url}}"],
+							"path": ["posts"],
+							"query": [
+								{
+									"key": "published",
+									"value": "false"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Posts with Tag",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts?tags=1",
+							"host": ["{{base_url}}"],
+							"path": ["posts"],
+							"query": [
+								{
+									"key": "tags",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Posts with Multiple Tags",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/posts?tags=1,2,4",
+							"host": ["{{base_url}}"],
+							"path": ["posts"],
+							"query": [
+								{
+									"key": "tags",
+									"value": "1,2,4"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "List Comments",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/comments",
+							"host": ["{{base_url}}"],
+							"path": ["comments"]
+						}
+					}
+				},
+				{
+					"name": "Get Comment Statistics",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/comments/stats",
+							"host": ["{{base_url}}"],
+							"path": ["comments", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Get Comment by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": ["{{base_url}}"],
+							"path": ["comments", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Comments by Post ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/comments/post/1",
+							"host": ["{{base_url}}"],
+							"path": ["comments", "post", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/comments",
+							"host": ["{{base_url}}"],
+							"path": ["comments"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"post_id\": 1,\n  \"content\": \"Great post!\",\n  \"commenter_name\": \"John Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": ["{{base_url}}"],
+							"path": ["comments", "1"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Updated comment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": ["{{base_url}}"],
+							"path": ["comments", "1"]
+						}
+					}
+				},
+				{
+					"name": "List Comments by Post",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/comments?postId=1",
+							"host": ["{{base_url}}"],
+							"path": ["comments"],
+							"query": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Comments by Commenter Name",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/comments?commenterName=John",
+							"host": ["{{base_url}}"],
+							"path": ["comments"],
+							"query": [
+								{
+									"key": "commenterName",
+									"value": "John"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "List Tags",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tags",
+							"host": ["{{base_url}}"],
+							"path": ["tags"]
+						}
+					}
+				},
+				{
+					"name": "Get Tag Statistics",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tags/stats",
+							"host": ["{{base_url}}"],
+							"path": ["tags", "stats"]
+						}
+					}
+				},
+				{
+					"name": "Get Popular Tags",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tags/popular",
+							"host": ["{{base_url}}"],
+							"path": ["tags", "popular"]
+						}
+					}
+				},
+				{
+					"name": "Get Tag by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tags/1",
+							"host": ["{{base_url}}"],
+							"path": ["tags", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Posts by Tag",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tags/1/posts",
+							"host": ["{{base_url}}"],
+							"path": ["tags", "1", "posts"]
+						}
+					}
+				},
+				{
+					"name": "Create Tag",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/tags",
+							"host": ["{{base_url}}"],
+							"path": ["tags"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"JavaScript\",\n  \"description\": \"JavaScript programming language\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Update Tag",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/tags/1",
+							"host": ["{{base_url}}"],
+							"path": ["tags", "1"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"JS\",\n  \"description\": \"JavaScript programming language (updated)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Delete Tag",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/tags/1",
+							"host": ["{{base_url}}"],
+							"path": ["tags", "1"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3001/api"
+		}
+	]
+} 
