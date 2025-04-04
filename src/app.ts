@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import categoryRoutes from './routes/categoryRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 import commentRoutes from './routes/commentRoutes.js';
+import tagRoutes from './routes/tagRoutes.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 // Load environment variables
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 app.use('/api/categories', categoryRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/tags', tagRoutes);
 
 // 404 handler
 app.use((req, res) => {

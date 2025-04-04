@@ -1,12 +1,25 @@
 import { Router } from 'express';
-import { listPosts, getPost, addPost, editPost, removePost } from '../controllers/postController.js';
+import { 
+    listPosts, 
+    getPost, 
+    addPost, 
+    editPost, 
+    removePost,
+    addTagToPostController,
+    removeTagFromPostController 
+} from '../controllers/postController.js';
 
 const router = Router();
 
-router.get('/', listPosts)
-router.get('/:id', getPost)
-router.post('/', addPost)
-router.put('/:id', editPost)
-router.delete('/:id', removePost)
+// Temel post işlemleri
+router.get('/', listPosts);
+router.get('/:id', getPost);
+router.post('/', addPost);
+router.put('/:id', editPost);
+router.delete('/:id', removePost);
 
-export default router
+// Etiket işlemleri
+router.post('/:postId/tags/:tagId', addTagToPostController);
+router.delete('/:postId/tags/:tagId', removeTagFromPostController);
+
+export default router;
