@@ -15,11 +15,13 @@
   "type": "module",
   "description": "be-7734p",
   "dependencies": {
+    "@prisma/client": "^6.5.0",
     "@types/express": "^5.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "knex": "^3.1.0",
     "pg": "^8.14.1",
+    "prisma": "^6.5.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
