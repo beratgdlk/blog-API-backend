@@ -1,10 +1,25 @@
 import express from 'express';
-import { listTags, getTag, addTag, editTag, removeTag, getPostsByTag } from '../controllers/tagController.js';
+import { 
+    listTags, 
+    getTag, 
+    addTag, 
+    editTag, 
+    removeTag, 
+    getPostsByTag,
+    getPopularTagsController,
+    getTagStats
+} from '../controllers/tagController.js';
 
 const router = express.Router();
 
 // Tüm etiketleri getir
 router.get('/', listTags);
+
+// Etiket istatistikleri
+router.get('/stats', getTagStats);
+
+// Popüler etiketleri getir
+router.get('/popular', getPopularTagsController);
 
 // Bir etiketi ID'ye göre getir 
 router.get('/:id', getTag);

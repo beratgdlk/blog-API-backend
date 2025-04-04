@@ -1,12 +1,25 @@
 import { Router } from 'express';
-import { listComments, getComment, addComment, editComment, removeComment } from '../controllers/commentController.js';
+import { 
+    listComments, 
+    getComment, 
+    addComment, 
+    editComment, 
+    removeComment,
+    getPostComments,
+    getCommentStats
+} from '../controllers/commentController.js';
 
 const router = Router();
 
-router.get('/', listComments)
-router.get('/:id', getComment)
-router.post('/', addComment)
-router.put('/:id', editComment)
-router.delete('/:id', removeComment)
+// Temel yorum işlemleri
+router.get('/', listComments);
+router.get('/stats', getCommentStats);
+router.get('/:id', getComment);
+router.post('/', addComment);
+router.put('/:id', editComment);
+router.delete('/:id', removeComment);
 
-export default router
+// Yazıya ait yorumları getir
+router.get('/post/:postId', getPostComments);
+
+export default router;
