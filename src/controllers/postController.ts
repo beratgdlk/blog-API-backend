@@ -76,7 +76,6 @@ export const removePost = async (req: Request, res: Response) => {
     }
 }
 
-// Etiketleme işlevleri
 export const addTagToPostController = async (req: Request, res: Response) => {
     try {
         const { postId, tagId } = req.params;
@@ -102,7 +101,6 @@ export const removeTagFromPostController = async (req: Request, res: Response) =
     }
 }
 
-// Yazı yayınlama işlevi
 export const publishPostController = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
@@ -114,7 +112,6 @@ export const publishPostController = async (req: Request, res: Response) => {
     }
 }
 
-// Yazı yayından kaldırma işlevi
 export const unpublishPostController = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
@@ -126,7 +123,6 @@ export const unpublishPostController = async (req: Request, res: Response) => {
     }
 }
 
-// Etikete göre yazıları getir
 export const getPostsByTag = async (req: Request, res: Response) => {
     try {
         const { tagId } = req.params;
@@ -138,7 +134,6 @@ export const getPostsByTag = async (req: Request, res: Response) => {
     }
 }
 
-// Yazı istatistikleri
 export const getPostStats = async (req: Request, res: Response) => {
     try {
         const total = await getPostCount();

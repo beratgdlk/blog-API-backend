@@ -68,7 +68,6 @@ export const deletePost = (id: number) => {
     });
 }
 
-// Etiketlerle ilgili işlemler
 export const addTagToPost = (postId: number, tagId: number) => {
     return prisma.postTags.create({
         data: {

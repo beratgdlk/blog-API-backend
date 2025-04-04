@@ -12,28 +12,20 @@ import {
 
 const router = express.Router();
 
-// Tüm etiketleri getir
-router.get('/', listTags);
+router.get('/', listTags as express.RequestHandler);
 
-// Etiket istatistikleri
-router.get('/stats', getTagStats);
+router.get('/stats', getTagStats as express.RequestHandler);
 
-// Popüler etiketleri getir
-router.get('/popular', getPopularTagsController);
+router.get('/popular', getPopularTagsController as express.RequestHandler);
 
-// Bir etiketi ID'ye göre getir 
-router.get('/:id', getTag);
+router.get('/:id', getTag as express.RequestHandler);
 
-// Bir etiketle ilişkili tüm gönderileri getir
-router.get('/:id/posts', getPostsByTag);
+router.get('/:id/posts', getPostsByTag as express.RequestHandler);
 
-// Yeni etiket oluştur
-router.post('/', addTag);
+router.post('/', addTag as express.RequestHandler);
 
-// Etiketi güncelle
-router.patch('/:id', editTag);
+router.patch('/:id', editTag as express.RequestHandler);
 
-// Etiketi sil
-router.delete('/:id', removeTag);
+router.delete('/:id', removeTag as express.RequestHandler);
 
-export default router; 
+export default router;

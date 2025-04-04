@@ -8,7 +8,6 @@ export interface PostData {
     [key: string]: any;
 }
 
-// Tüm yazıları getir
 export const getAllPosts = async (categoryId?: string, published?: string, tags?: string) => {
     const where: any = { deleted_at: null };
     
@@ -22,7 +21,6 @@ export const getAllPosts = async (categoryId?: string, published?: string, tags?
         where.published_at = null;
     }
     
-    // Etiket filtreleme
     if (tags) {
         const tagIds = tags.split(',').map(id => Number(id.trim()));
         
@@ -49,7 +47,6 @@ export const getAllPosts = async (categoryId?: string, published?: string, tags?
     });
 }
 
-// ID'ye göre yazıyı getir
 export const getPostById = async (id: number) => {
     return prisma.posts.findUnique({
         where: { id },
@@ -65,7 +62,6 @@ export const getPostById = async (id: number) => {
     });
 }
 
-// Yeni yazı oluştur
 export const createPost = async (data: PostData) => {
     return prisma.posts.create({
         data,
@@ -75,7 +71,6 @@ export const createPost = async (data: PostData) => {
     });
 }
 
-// Yazıyı güncelle
 export const updatePost = async (id: number, data: PostData) => {
     return prisma.posts.update({
         where: { id },
@@ -86,7 +81,6 @@ export const updatePost = async (id: number, data: PostData) => {
     });
 }
 
-// Yazıyı sil (yumuşak silme)
 export const deletePost = async (id: number) => {
     return prisma.posts.update({
         where: { id },
@@ -94,7 +88,6 @@ export const deletePost = async (id: number) => {
     });
 }
 
-// Yazıyı yayınla
 export const publishPost = async (id: number) => {
     return prisma.posts.update({
         where: { id },
@@ -102,7 +95,6 @@ export const publishPost = async (id: number) => {
     });
 }
 
-// Yazının yayınını kaldır
 export const unpublishPost = async (id: number) => {
     return prisma.posts.update({
         where: { id },
@@ -110,9 +102,7 @@ export const unpublishPost = async (id: number) => {
     });
 }
 
-// Yazıya etiket ekle
 export const addTagToPost = async (postId: number, tagId: number) => {
-    // Önce ilişkinin zaten var olup olmadığını kontrol et
     const existingRelation = await prisma.postTags.findFirst({
         where: {
             post_id: postId,
@@ -135,7 +125,6 @@ export const addTagToPost = async (postId: number, tagId: number) => {
     });
 }
 
-// Yazıdan etiket kaldır
 export const removeTagFromPost = async (postId: number, tagId: number) => {
     return prisma.postTags.deleteMany({
         where: {
@@ -145,7 +134,6 @@ export const removeTagFromPost = async (postId: number, tagId: number) => {
     });
 }
 
-// Etikete göre yazıları getir
 export const getPostsByTagId = async (tagId: number) => {
     return prisma.posts.findMany({
         where: {
@@ -167,8 +155,7 @@ export const getPostsByTagId = async (tagId: number) => {
     });
 }
 
-// Yazıların toplam sayısını al
 export const getPostCount = async (includeDeleted: boolean = false): Promise<number> => {
     const where = includeDeleted ? {} : { deleted_at: null };
     return prisma.posts.count({ where });
-} 
+}

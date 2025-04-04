@@ -1,4 +1,3 @@
-// Error messages
 export const ERROR_MESSAGES = {
     SERVER_ERROR: "Server error",
     NOT_FOUND: {
@@ -12,9 +11,8 @@ export const ERROR_MESSAGES = {
     }
 };
 
-// Success messages
 export const SUCCESS_MESSAGES = {
     CREATED: "Successfully created",
     UPDATED: "Successfully updated",
     DELETED: "Successfully deleted"
-}; 
+};

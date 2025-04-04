@@ -50,7 +50,6 @@ export const getPostsByTag = async (req: Request, res: Response) => {
 
 export const addTag = async (req: Request, res: Response) => {
     try {
-        // Etiket adının benzersiz olduğunu kontrol et
         const existingTag = await getTagByName(req.body.name);
         if (existingTag) {
             return res.status(400).json({ message: "Tag with this name already exists" });
@@ -68,7 +67,6 @@ export const editTag = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         
-        // Eğer isim değiştiriliyorsa, yeni ismin kullanılabilir olduğunu kontrol et
         if (req.body.name) {
             const existingTag = await getTagByName(req.body.name);
             if (existingTag && existingTag.id !== Number(id)) {
@@ -95,7 +93,6 @@ export const removeTag = async (req: Request, res: Response) => {
     }
 }
 
-// Popüler etiketleri getir
 export const getPopularTagsController = async (req: Request, res: Response) => {
     try {
         const limit = req.query.limit ? Number(req.query.limit) : 10;
@@ -107,7 +104,6 @@ export const getPopularTagsController = async (req: Request, res: Response) => {
     }
 }
 
-// Etiket istatistikleri
 export const getTagStats = async (req: Request, res: Response) => {
     try {
         const total = await getTagCount();

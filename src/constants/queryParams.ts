@@ -1,13 +1,13 @@
 export const QUERY_PARAMS = {
-    // Kategori filtresi
+   
     SHOW_DELETED: 'showDeleted',
     
-    // Gönderi filtreleri
+    
     CATEGORY_ID: 'categoryId',
     PUBLISHED: 'published',
-    TAGS: 'tags',  // Etiket filtresi için yeni parametre
+    TAGS: 'tags',  
     
-    // Yorum filtreleri
+    
     POST_ID: 'postId',
     COMMENTER_NAME: 'commenterName'
 };
@@ -24,4 +24,4 @@ export const SORT_PARAMS = {
     SORT_DIR: 'sortDir',
     ASC: 'asc',
     DESC: 'desc'
-}; 
+};

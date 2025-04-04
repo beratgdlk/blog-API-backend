@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 import { 
     listPosts, 
     getPost, 
@@ -12,22 +12,19 @@ import {
     getPostStats
 } from '../controllers/postController.js';
 
-const router = Router();
+const router = express.Router();
 
-// Temel post işlemleri
-router.get('/', listPosts);
-router.get('/stats', getPostStats);
-router.get('/:id', getPost);
-router.post('/', addPost);
-router.patch('/:id', editPost);
-router.delete('/:id', removePost);
+router.get('/', listPosts as express.RequestHandler);
+router.get('/stats', getPostStats as express.RequestHandler);
+router.get('/:id', getPost as express.RequestHandler);
+router.post('/', addPost as express.RequestHandler);
+router.patch('/:id', editPost as express.RequestHandler);
+router.delete('/:id', removePost as express.RequestHandler);
 
-// Yayınlama işlemleri
-router.patch('/:id/publish', publishPostController);
-router.patch('/:id/unpublish', unpublishPostController);
+router.patch('/:id/publish', publishPostController as express.RequestHandler);
+router.patch('/:id/unpublish', unpublishPostController as express.RequestHandler);
 
-// Etiket işlemleri
-router.post('/:postId/tags/:tagId', addTagToPostController);
-router.delete('/:postId/tags/:tagId', removeTagFromPostController);
+router.post('/:postId/tags/:tagId', addTagToPostController as express.RequestHandler);
+router.delete('/:postId/tags/:tagId', removeTagFromPostController as express.RequestHandler);
 
 export default router;

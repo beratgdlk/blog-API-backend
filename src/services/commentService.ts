@@ -8,7 +8,6 @@ export interface CommentData {
     [key: string]: any;
 }
 
-// Tüm yorumları getir
 export const getAllComments = async (postId?: string, commenterName?: string) => {
     const where: any = {};
     
@@ -34,7 +33,6 @@ export const getAllComments = async (postId?: string, commenterName?: string) =>
     });
 }
 
-// ID'ye göre yorum getir
 export const getCommentById = async (id: number): Promise<comments | null> => {
     return prisma.comments.findUnique({
         where: { id },
@@ -44,7 +42,6 @@ export const getCommentById = async (id: number): Promise<comments | null> => {
     });
 }
 
-// Yazıya göre yorumları getir
 export const getCommentsByPostId = async (postId: number) => {
     return prisma.comments.findMany({
         where: {
@@ -56,7 +53,6 @@ export const getCommentsByPostId = async (postId: number) => {
     });
 }
 
-// Yeni yorum oluştur
 export const createComment = async (data: CommentData): Promise<comments> => {
     return prisma.comments.create({
         data,
@@ -66,7 +62,6 @@ export const createComment = async (data: CommentData): Promise<comments> => {
     });
 }
 
-// Yorumu güncelle
 export const updateComment = async (id: number, data: CommentData): Promise<comments> => {
     return prisma.comments.update({
         where: { id },
@@ -77,15 +72,13 @@ export const updateComment = async (id: number, data: CommentData): Promise<comm
     });
 }
 
-// Yorumu sil
 export const deleteComment = async (id: number): Promise<comments> => {
     return prisma.comments.delete({
         where: { id }
     });
 }
 
-// Yorumların toplam sayısını al
 export const getCommentCount = async (postId?: number): Promise<number> => {
     const where = postId ? { post_id: postId } : {};
     return prisma.comments.count({ where });
-} 
+}

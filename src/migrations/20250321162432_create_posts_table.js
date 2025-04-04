@@ -8,7 +8,7 @@ export async function up(knex) {
         table.timestamp('published_at').nullable();
         table.timestamp('deleted_at').nullable();
     })
-} /* UP  migrate edildiğinde çalışacak kod */
+}
 
 export async function down(knex) {
     await knex.schema.dropTable('posts');

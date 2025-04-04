@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 import { 
     listCategories, 
     getCategory, 
@@ -8,16 +8,14 @@ import {
     getCategoryStats
 } from '../controllers/categoryController.js';
 
-const router = Router();
+const router = express.Router();
 
-// Kategori listeleme ve istatistik
-router.get('/', listCategories);
-router.get('/stats', getCategoryStats);
+router.get('/', listCategories as express.RequestHandler);
+router.get('/stats', getCategoryStats as express.RequestHandler);
 
-// ID'ye göre kategori işlemleri
-router.get('/:id', getCategory);
-router.post('/', addCategory);
-router.patch('/:id', editCategory);
-router.delete('/:id', removeCategory);
+router.get('/:id', getCategory as express.RequestHandler);
+router.post('/', addCategory as express.RequestHandler);
+router.patch('/:id', editCategory as express.RequestHandler);
+router.delete('/:id', removeCategory as express.RequestHandler);
 
 export default router;

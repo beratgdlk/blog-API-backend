@@ -60,7 +60,6 @@ export const removeCategory = async (req: Request, res: Response) => {
     }
 }
 
-// İstatistikler için yeni endpoint
 export const getCategoryStats = async (req: Request, res: Response) => {
     try {
         const total = await getCategoryCount();

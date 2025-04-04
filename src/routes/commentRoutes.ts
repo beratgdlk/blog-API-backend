@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 import { 
     listComments, 
     getComment, 
@@ -9,17 +9,15 @@ import {
     getCommentStats
 } from '../controllers/commentController.js';
 
-const router = Router();
+const router = express.Router();
 
-// Temel yorum işlemleri
-router.get('/', listComments);
-router.get('/stats', getCommentStats);
-router.get('/:id', getComment);
-router.post('/', addComment);
-router.patch('/:id', editComment);
-router.delete('/:id', removeComment);
+router.get('/', listComments as express.RequestHandler);
+router.get('/stats', getCommentStats as express.RequestHandler);
+router.get('/:id', getComment as express.RequestHandler);
+router.post('/', addComment as express.RequestHandler);
+router.patch('/:id', editComment as express.RequestHandler);
+router.delete('/:id', removeComment as express.RequestHandler);
 
-// Yazıya ait yorumları getir
-router.get('/post/:postId', getPostComments);
+router.get('/post/:postId', getPostComments as express.RequestHandler);
 
 export default router;

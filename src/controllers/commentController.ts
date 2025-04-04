@@ -70,7 +70,6 @@ export const removeComment = async (req: Request, res: Response) => {
     }
 }
 
-// Bir yazıya ait tüm yorumları listele
 export const getPostComments = async (req: Request, res: Response) => {
     try {
         const { postId } = req.params;
@@ -82,7 +81,6 @@ export const getPostComments = async (req: Request, res: Response) => {
     }
 }
 
-// Yorum istatistikleri
 export const getCommentStats = async (req: Request, res: Response) => {
     try {
         const postId = req.query.postId ? Number(req.query.postId) : undefined;
