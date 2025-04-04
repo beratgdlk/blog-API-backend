@@ -18,7 +18,9 @@ export const listPosts = async (req: Request, res: Response) => {
     try {
         const categoryId = req.query[QUERY_PARAMS.CATEGORY_ID] as string;
         const published = req.query[QUERY_PARAMS.PUBLISHED] as string;
-        const posts = await getAllPosts(categoryId, published);
+        const tags = req.query[QUERY_PARAMS.TAGS] as string;
+        
+        const posts = await getAllPosts(categoryId, published, tags);
         res.status(200).json(posts);
     } catch (error: any) {
         console.error('listPosts error:', error);

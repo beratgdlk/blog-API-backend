@@ -31,7 +31,7 @@ router.get('/:id/posts', getPostsByTag);
 router.post('/', addTag);
 
 // Etiketi güncelle
-router.put('/:id', editTag);
+router.patch('/:id', editTag);
 
 // Etiketi sil
 router.delete('/:id', removeTag);

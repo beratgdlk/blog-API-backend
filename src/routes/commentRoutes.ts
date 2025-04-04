@@ -16,7 +16,7 @@ router.get('/', listComments);
 router.get('/stats', getCommentStats);
 router.get('/:id', getComment);
 router.post('/', addComment);
-router.put('/:id', editComment);
+router.patch('/:id', editComment);
 router.delete('/:id', removeComment);
 
 // Yazıya ait yorumları getir

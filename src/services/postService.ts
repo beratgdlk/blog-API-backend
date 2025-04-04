@@ -9,7 +9,7 @@ export interface PostData {
 }
 
 // Tüm yazıları getir
-export const getAllPosts = async (categoryId?: string, published?: string) => {
+export const getAllPosts = async (categoryId?: string, published?: string, tags?: string) => {
     const where: any = { deleted_at: null };
     
     if (categoryId) {
@@ -20,6 +20,19 @@ export const getAllPosts = async (categoryId?: string, published?: string) => {
         where.published_at = { not: null };
     } else if (published === 'false') {
         where.published_at = null;
+    }
+    
+    // Etiket filtreleme
+    if (tags) {
+        const tagIds = tags.split(',').map(id => Number(id.trim()));
+        
+        where.postTags = {
+            some: {
+                tag_id: {
+                    in: tagIds
+                }
+            }
+        };
     }
     
     return prisma.posts.findMany({

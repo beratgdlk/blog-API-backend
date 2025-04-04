@@ -19,12 +19,12 @@ router.get('/', listPosts);
 router.get('/stats', getPostStats);
 router.get('/:id', getPost);
 router.post('/', addPost);
-router.put('/:id', editPost);
+router.patch('/:id', editPost);
 router.delete('/:id', removePost);
 
 // Yayınlama işlemleri
-router.put('/:id/publish', publishPostController);
-router.put('/:id/unpublish', unpublishPostController);
+router.patch('/:id/publish', publishPostController);
+router.patch('/:id/unpublish', unpublishPostController);
 
 // Etiket işlemleri
 router.post('/:postId/tags/:tagId', addTagToPostController);

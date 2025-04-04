@@ -12,7 +12,7 @@ This project is a blog API developed using Prisma ORM. The API is built with MVC
 | GET | /api/categories/stats | Get category statistics |
 | GET | /api/categories/:id | Get category by ID |
 | POST | /api/categories | Create a new category |
-| PUT | /api/categories/:id | Update a category |
+| PATCH | /api/categories/:id | Update a category |
 | DELETE | /api/categories/:id | Delete a category (soft delete) |
 
 ### Posts
@@ -23,10 +23,10 @@ This project is a blog API developed using Prisma ORM. The API is built with MVC
 | GET | /api/posts/stats | Get post statistics |
 | GET | /api/posts/:id | Get post by ID |
 | POST | /api/posts | Create a new post |
-| PUT | /api/posts/:id | Update a post |
+| PATCH | /api/posts/:id | Update a post |
 | DELETE | /api/posts/:id | Delete a post (soft delete) |
-| PUT | /api/posts/:id/publish | Publish a post |
-| PUT | /api/posts/:id/unpublish | Unpublish a post |
+| PATCH | /api/posts/:id/publish | Publish a post |
+| PATCH | /api/posts/:id/unpublish | Unpublish a post |
 | POST | /api/posts/:postId/tags/:tagId | Add a tag to a post |
 | DELETE | /api/posts/:postId/tags/:tagId | Remove a tag from a post |
 
@@ -39,7 +39,7 @@ This project is a blog API developed using Prisma ORM. The API is built with MVC
 | GET | /api/comments/:id | Get comment by ID |
 | GET | /api/comments/post/:postId | Get comments for a post |
 | POST | /api/comments | Create a new comment |
-| PUT | /api/comments/:id | Update a comment |
+| PATCH | /api/comments/:id | Update a comment |
 | DELETE | /api/comments/:id | Delete a comment |
 
 ### Tags
@@ -52,7 +52,7 @@ This project is a blog API developed using Prisma ORM. The API is built with MVC
 | GET | /api/tags/:id | Get tag by ID |
 | GET | /api/tags/:id/posts | List posts by tag |
 | POST | /api/tags | Create a new tag |
-| PUT | /api/tags/:id | Update a tag |
+| PATCH | /api/tags/:id | Update a tag |
 | DELETE | /api/tags/:id | Delete a tag |
 
 ## Filtering and Sorting
@@ -62,6 +62,8 @@ This project is a blog API developed using Prisma ORM. The API is built with MVC
 - `?categoryId=1`: Filter posts by category
 - `?published=true`: Filter published posts
 - `?published=false`: Filter unpublished posts
+- `?tags=1`: Filter posts with tag ID 1
+- `?tags=1,2,4`: Filter posts with tag IDs 1, 2, or 4
 
 ### Comments
 
@@ -98,7 +100,7 @@ This project is a blog API developed using Prisma ORM. The API is built with MVC
 - id: number
 - post_id: number
 - content: string
-- contenter_name: string
+- commenter_name: string
 - created_at: Date
 - posts: Post
 
