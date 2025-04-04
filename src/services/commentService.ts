@@ -4,7 +4,7 @@ import { comments } from '@prisma/client';
 export interface CommentData {
     post_id?: number;
     content?: string;
-    contenter_name: string;
+    commenter_name: string;
     [key: string]: any;
 }
 
@@ -17,7 +17,7 @@ export const getAllComments = async (postId?: string, commenterName?: string) =>
     }
     
     if (commenterName) {
-        where.contenter_name = {
+        where.commenter_name = {
             contains: commenterName,
             mode: 'insensitive'
         };

@@ -17,7 +17,7 @@ router.get('/stats', getCategoryStats);
 // ID'ye göre kategori işlemleri
 router.get('/:id', getCategory);
 router.post('/', addCategory);
-router.put('/:id', editCategory);
+router.patch('/:id', editCategory);
 router.delete('/:id', removeCategory);
 
 export default router;
