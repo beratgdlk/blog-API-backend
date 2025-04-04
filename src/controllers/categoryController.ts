@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllCategories, getCategoryById, createCategory, updateCategory, deleteCategory } from '../models/categoryModel.js';
+import { getAllCategories, getCategoryById, createCategory, updateCategory, deleteCategory, getCategoryCount } from '../services/categoryService.js';
 import { QUERY_PARAMS } from '../constants/queryParams.js';
 
 export const listCategories = async (req: Request, res: Response) => {
@@ -56,6 +56,24 @@ export const removeCategory = async (req: Request, res: Response) => {
         res.status(200).json(deleted);
     } catch (error: any) {
         console.error('removeCategory error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// İstatistikler için yeni endpoint
+export const getCategoryStats = async (req: Request, res: Response) => {
+    try {
+        const total = await getCategoryCount();
+        const totalWithDeleted = await getCategoryCount(true);
+        const deletedCount = totalWithDeleted - total;
+        
+        res.status(200).json({
+            total,
+            active: total,
+            deleted: deletedCount
+        });
+    } catch (error: any) {
+        console.error('getCategoryStats error:', error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
 }

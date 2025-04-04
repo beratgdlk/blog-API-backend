@@ -1,5 +1,13 @@
 import { Request, Response } from 'express';
-import { createComment, getAllComments, getCommentById, updateComment, deleteComment } from '../models/commentModel.js';
+import { 
+    getAllComments, 
+    getCommentById, 
+    createComment, 
+    updateComment, 
+    deleteComment, 
+    getCommentsByPostId,
+    getCommentCount 
+} from '../services/commentService.js';
 import { QUERY_PARAMS } from '../constants/queryParams.js';
 
 export const listComments = async (req: Request, res: Response) => {
@@ -58,6 +66,36 @@ export const removeComment = async (req: Request, res: Response) => {
         res.status(200).json(deletedComment);
     } catch (error: any) {
         console.error('removeComment error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// Bir yazıya ait tüm yorumları listele
+export const getPostComments = async (req: Request, res: Response) => {
+    try {
+        const { postId } = req.params;
+        const comments = await getCommentsByPostId(Number(postId));
+        res.status(200).json(comments);
+    } catch (error: any) {
+        console.error('getPostComments error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// Yorum istatistikleri
+export const getCommentStats = async (req: Request, res: Response) => {
+    try {
+        const postId = req.query.postId ? Number(req.query.postId) : undefined;
+        const total = await getCommentCount(postId);
+        
+        const stats = {
+            total,
+            postId
+        };
+        
+        res.status(200).json(stats);
+    } catch (error: any) {
+        console.error('getCommentStats error:', error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
 }

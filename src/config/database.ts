@@ -1,17 +1,11 @@
-import knex from 'knex';
-import dotenv from 'dotenv';
+/**
+ * @deprecated Bu dosya bakım amaçlı tutulmaktadır. 
+ * Yeni çalışmalarda prisma.ts dosyasını kullanın.
+ */
+import prisma from './prisma.js';
 
-dotenv.config();
-
-const db = knex ({
-    client: "pg",
-    connection: {
-        database: process.env.DB_NAME,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT) || 5432
-    }
-});
+// Uyumluluk için db değişkenini export ediyoruz
+// Ancak yeni implementasyonlarda doğrudan prisma istemcisini kullanın
+const db = prisma;
 
 export { db };

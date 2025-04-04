@@ -1,5 +1,17 @@
 import { Request, Response } from 'express';
-import { getAllPosts, getPostById, createPost, updatePost, deletePost, addTagToPost, removeTagFromPost } from '../models/postModel.js';
+import { 
+    getAllPosts, 
+    getPostById, 
+    createPost, 
+    updatePost, 
+    deletePost, 
+    addTagToPost, 
+    removeTagFromPost,
+    publishPost,
+    unpublishPost,
+    getPostsByTagId,
+    getPostCount
+} from '../services/postService.js';
 import { QUERY_PARAMS } from '../constants/queryParams.js';
 
 export const listPosts = async (req: Request, res: Response) => {
@@ -70,6 +82,9 @@ export const addTagToPostController = async (req: Request, res: Response) => {
         res.status(201).json(taggedPost);
     } catch (error: any) {
         console.error('addTagToPost error:', error);
+        if (error.message === 'Bu etiket zaten bu yazıya eklenmiş') {
+            return res.status(400).json({ message: error.message });
+        }
         res.status(500).json({ message: "Server error", error: error.message });
     }
 }
@@ -81,6 +96,60 @@ export const removeTagFromPostController = async (req: Request, res: Response) =
         res.status(200).json({ message: "Tag removed from post successfully" });
     } catch (error: any) {
         console.error('removeTagFromPost error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// Yazı yayınlama işlevi
+export const publishPostController = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const published = await publishPost(Number(id));
+        res.status(200).json(published);
+    } catch (error: any) {
+        console.error('publishPost error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// Yazı yayından kaldırma işlevi
+export const unpublishPostController = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const unpublished = await unpublishPost(Number(id));
+        res.status(200).json(unpublished);
+    } catch (error: any) {
+        console.error('unpublishPost error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// Etikete göre yazıları getir
+export const getPostsByTag = async (req: Request, res: Response) => {
+    try {
+        const { tagId } = req.params;
+        const posts = await getPostsByTagId(Number(tagId));
+        res.status(200).json(posts);
+    } catch (error: any) {
+        console.error('getPostsByTag error:', error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+// Yazı istatistikleri
+export const getPostStats = async (req: Request, res: Response) => {
+    try {
+        const total = await getPostCount();
+        const totalWithDeleted = await getPostCount(true);
+        const deletedCount = totalWithDeleted - total;
+        
+        res.status(200).json({
+            total,
+            active: total,
+            deleted: deletedCount
+        });
+    } catch (error: any) {
+        console.error('getPostStats error:', error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
 }
